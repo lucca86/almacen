@@ -22,7 +22,7 @@ function parseCurrency(value: number): string {
 const IndexRoute: React.FC<Props> = ({ products }) => {
 
   const [cart, setCart] = useState<Product[]>([]);
-  const [selectedImage, setSelectedImage] = useState<string>(null)
+  const [selectedImage, setSelectedImage] = useState<string>('')
 
 
   const text = useMemo(() => {
