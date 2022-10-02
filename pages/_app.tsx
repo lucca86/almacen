@@ -15,7 +15,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           padding={4}
         >
           <VStack marginBottom={6} >
-            <Image borderRadius={9999} src='//placehold.it/128x128'></Image>
+            <Image borderRadius={9999} src='//placehold.it/128x128' alt='logo'></Image>
             <Heading>Almacen</Heading>
             <Text>Almacen by Goncy</Text>
           </VStack>

@@ -12,10 +12,10 @@ interface Props {
 }
 
 function parseCurrency(value: number): string {
-  return value.toLocaleString('ar-AR', {
-    style: 'currency',
-    currency: 'ARS',
-  })
+  return value.toLocaleString("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  });
 }
 
 
@@ -26,11 +26,12 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
 
 
   const text = useMemo(() => {
-    return cart.reduce((message, product) => message.concat(`* ${product.title} - $${parseCurrency(product.price)}\n`), ``,).concat(`\nTotal: ${parseCurrency(cart.reduce((total, product) => total + product.price, 0))}`)
+    return cart.reduce((message, product) => message.concat(`* ${product.title} - ${parseCurrency(product.price)}\n`), ``,).concat(`\nTotal: ${parseCurrency(cart.reduce((total, product) => total + product.price, 0))}`)
+    //return cart.reduce((message, product) => message.concat(`* ${product.title} - $${product.price}\n`), ``,).concat(`\nTotal: $${cart.reduce((total, product) => total + Number(product.price), 0)}`)
   }, [cart])
 
   return (
-    <AnimateSharedLayout type='crossfade'>
+    <AnimateSharedLayout >
       <Stack spacing={6} >
         <Grid gridGap={6} templateColumns='repeat(auto-fill, minmax(240px, 1fr))'>
           {products.map((product) => (
@@ -48,7 +49,14 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
                   onClick={() => setSelectedImage(product.image)}
                 />
                 <Text>{product.title}</Text>
-                <Text fontSize='sm' fontWeight='500' color='green.500'>{parseCurrency(product.price)}</Text>
+                <Text 
+                  fontSize='sm' 
+                  fontWeight='500' 
+                  color='green.500'
+                >
+                  
+                  parseCurrency({product.price})
+                </Text>
               </Stack>
               <Button
                 variant='outline'
@@ -99,9 +107,9 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
             left={0}
             height='100%'
             width='100%'
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedImage('')}
           >
-            <Image key='image' src={selectedImage} />
+            <Image key='image' src={selectedImage} alt='image' />
           </Flex>}
       </AnimatePresence>
     </AnimateSharedLayout>
