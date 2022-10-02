@@ -11,7 +11,7 @@ interface Props {
   products: Product[];
 }
 
-function parseCurrency(value: number): string {
+function parseCurrency (value: number): string {
   return value.toLocaleString("es-AR", {
     style: "currency",
     currency: "ARS",
@@ -27,7 +27,6 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
 
   const text = useMemo(() => {
     return cart.reduce((message, product) => message.concat(`* ${product.title} - ${parseCurrency(product.price)}\n`), ``,).concat(`\nTotal: ${parseCurrency(cart.reduce((total, product) => total + product.price, 0))}`)
-    //return cart.reduce((message, product) => message.concat(`* ${product.title} - $${product.price}\n`), ``,).concat(`\nTotal: $${cart.reduce((total, product) => total + Number(product.price), 0)}`)
   }, [cart])
 
   return (
@@ -54,8 +53,7 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
                   fontWeight='500' 
                   color='green.500'
                 >
-                  
-                  parseCurrency({product.price})
+                 {parseCurrency(product.price)}
                 </Text>
               </Stack>
               <Button
